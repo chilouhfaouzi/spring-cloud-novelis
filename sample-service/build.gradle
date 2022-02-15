@@ -1,0 +1,27 @@
+ext {
+    set('mapstructVersion', '1.3.1.Final')
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    compile 'io.springfox:springfox-swagger2:2.9.2'
+    compile 'io.springfox:springfox-swagger-ui:2.9.2'
+    api project(":sample-dao")
+    api project(":sample-domain")
+    api project(":sample-helper")
+    compileOnly 'org.projectlombok:lombok'
+
+    implementation "org.mapstruct:mapstruct-jdk8:${mapstructVersion}"
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}" //Must be defined before the lombok annotationProcessor
+    annotationProcessor 'org.projectlombok:lombok'
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}

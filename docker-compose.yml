@@ -1,0 +1,19 @@
+version: "2.4"
+
+services:
+  sample:
+    build:
+      context: .
+    image: smartroby_sample:${VERSION:-latest}
+    container_name: sample
+    environment:
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+    ports:
+      - 5005:5005
+#    volumes:
+#      - pathToLogs:/logs
+    networks:
+      - sample
+networks:
+  sample:
+    external: true

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property name="LOG_FILE_NAME" value="sample"/>
+    <property name="LOG_FILE_PATH" value="/logs"/>
+
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level - %d{dd-MM-yyyy HH:mm:ss.SSS} - %10X{thread} - %10X{user} - %10X{contratId} - %logger -
+                %msg%n
+            </pattern>
+        </encoder>
+
+    </appender>
+    <appender name="LOG-FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE_PATH}/${LOG_FILE_NAME}.log</file>
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %-5level - %d{dd-MM-yyyy HH:mm:ss.SSS} - %10X{thread} - %10X{user} - %10X{contratId} - %logger - %msg%n
+            </Pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${LOG_FILE_PATH}/archived/${LOG_FILE_NAME}.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+    </appender>
+
+    <root level="info" additivity="false">
+        <appender-ref ref="LOG-FILE" />
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

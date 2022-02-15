@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/changelog/create_table_person.yml
+  - includeAll:
+      path: liquibase/changelog/

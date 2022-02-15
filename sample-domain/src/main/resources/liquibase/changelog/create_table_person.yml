@@ -1,0 +1,45 @@
+databaseChangeLog:
+  -  changeSet:
+       id:  1
+       author:  Oussama AMARA
+       changes:
+         -  createTable:
+              tableName:  person
+              columns:
+                -  column:
+                     name:  id
+                     type:  int
+                     autoIncrement:  true
+                     constraints:
+                       primaryKey:  true
+                       nullable:  false
+                -  column:
+                     name: first_name
+                     type: varchar(50)
+                     constraints:
+                       nullable: false
+                - column:
+                    name: last_name
+                    type: varchar(50)
+                    constraints:
+                      nullable: false
+                - column:
+                    name: created_by
+                    type: varchar(20)
+                    constraints:
+                      nullable: false
+                - column:
+                    name: created_at
+                    type: date
+                    constraints:
+                      nullable: false
+                - column:
+                    name: updated_by
+                    type: varchar(50)
+                - column:
+                    name: updated_at
+                    type: date
+                - column:
+                    name: version
+                    type: int
+
